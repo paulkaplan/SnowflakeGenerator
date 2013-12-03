@@ -599,11 +599,12 @@ public void exportSVG(xPoints, yPoints) {
     var svg = '<?xml version="1.0" standalone="yes"?>';
 svg += '<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">';
 svg += '<svg width="640px" height="640px" xmlns="http://www.w3.org/2000/svg" version="1.1"><path d="';
-
+svg += "M"+xPoints[0]+","+yPoints[0]+" ";
 for(var i=0; i<xPoints.length; i++) {
-   svg += "M"+xPoints[i]+","+yPoints[i]+" ";
    svg += "L"+xPoints[(i+1)%xPoints.length]+","+yPoints[(i+1)%xPoints.length];
 }
+svg += "Z";
+
 svg += '" stroke="#000" fill="#000" transform="translate(320,320)" /></svg>';
 var blob = new Blob([svg], {type: "text/plain;charset=utf-8"});
 saveAs(blob, "snowflake.svg");
