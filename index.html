@@ -42,6 +42,11 @@ html { overflow: hidden;     background-color:#F27E71;
   a.button-row:hover {
     background-color:#F27E71;
   }
+  .attribution {
+    font-size:10px;
+  }
+  .red, .attribution a { color: #F27E71 !important;}
+  .attribution p {font-size: 12px;}
   /*.button-row { text-align: center;}*/
 </style>
 
@@ -49,7 +54,17 @@ html { overflow: hidden;     background-color:#F27E71;
 
 <body>
   <div class="container">
-    <h1> Snowflake Generator </h1>
+    <div class="row">
+      <div class="col-md-8">
+        <h1> Snowflake Generator </h1>
+      </div>
+      <div class="col-md-4 attribution">
+        <p>
+          Written by <a href="http://www.evilmadscientist.com">Windell H. Oskay</a><br/>
+          Ported by Paul Kaplan at <a href="http://inventables.com">Inventables</a>
+        </p>
+      </div>
+    </div>
     <div class="row">
         <a class="button-row" id="clear" href="#">Restart</a>
         <a class="button-row" id='save' href="#">Save as SVG</a>
@@ -57,16 +72,11 @@ html { overflow: hidden;     background-color:#F27E71;
     <div class="canvas-wrapper">
       <canvas id="c" data-processing-sources="snowflake2.pde"></canvas>
     </div>
-  
-    <div class="row">
-      <div class="button-row col-md-6">
-        <a href="#">Restart</a>
+    <div class="row attribution">
+      <div class="col-md-12">
+
       </div>
-      <div class="button-row col-md-6">
-        <a href="#">Save as SVG</a>
-      </div>  
     </div>
-  </div>
 </body>
 
 
