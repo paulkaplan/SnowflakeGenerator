@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <script src="processing.js
+"></script>
+<script src="filesaver.js"></script>
+<link href="//netdna.bootstrapcdn.com/bootstrap/3.0.2/css/bootstrap.min.css" rel="stylesheet">
+<link href='http://fonts.googleapis.com/css?family=Wellfleet' rel='stylesheet' type='text/css'>
+
+<style>
+  .canvas-wrapper {
+    width:680px;
+    height:680px;
+    margin:auto auto;
+    outline: none;
+  }
+  canvas { 
+      outline: none;
+
+  user-select: none;
+-webkit-user-select: none;
+-moz-user-select: none;}
+  body, html, h1, a { font-family: 'Wellfleet' !important; color: #fff !important;}
+  h1, h2, h3, h4, h5, div, p { font-family: 'Wellfleet';}
+
+
+  body { 
+    background-image: url(stripe44.png);
+    /*background-size: 22px;*/
+  }
+.container { background-color:#68A0B6; height:5000px; overflow: hidden;}
+html { overflow: hidden;     background-color:#F27E71;
+}
+  a.button-row {
+    display: inline-block;
+    padding:10px;
+    border-radius: 10px;
+    border: 1px solid #fff;
+    text-align: center;
+    margin:10px;
+  }
+  a.button-row:hover {
+    background-color:#F27E71;
+  }
+  /*.button-row { text-align: center;}*/
+</style>
+
+</head>
+
+<body>
+  <div class="container">
+    <h1> Snowflake Generator </h1>
+    <div class="row">
+        <a class="button-row" id="clear" href="#">Restart</a>
+        <a class="button-row" id='save' href="#">Save as SVG</a>
+    </div>
+    <div class="canvas-wrapper">
+      <canvas id="c" data-processing-sources="snowflake2.pde"></canvas>
+    </div>
+  
+    <div class="row">
+      <div class="button-row col-md-6">
+        <a href="#">Restart</a>
+      </div>
+      <div class="button-row col-md-6">
+        <a href="#">Save as SVG</a>
+      </div>  
+    </div>
+  </div>
+</body>
+
+
+<script>
+document.getElementById('save').addEventListener('click', function(){
+  Processing.getInstanceById('c').record();
+});
+document.getElementById('clear').addEventListener('click', function(){
+  Processing.getInstanceById('c').ClearShape();
+});
+</script>
+<html>
