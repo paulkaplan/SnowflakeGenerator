@@ -172,7 +172,13 @@ public void ClearShape() {
 
 
 
+public void cursorMode(){
+  document.getElementById('b').setAttribute('class', 'cursorMode');
+}
 
+public void endCursorMode(){
+    document.getElementById('b').setAttribute('class', 'NOTcursorMode');
+}
 void mousePressed() { 
 
   int i,len,xt,yt; 
@@ -520,6 +526,8 @@ void draw()
       } 
       i++;
     } 
+    if(pointsActive){        cursorMode();}
+    else {        endCursorMode();}
   }
   pointsActive = true;
 
@@ -599,8 +607,4 @@ for(var i=0; i<xPoints.length; i++) {
 svg += '" stroke="#000" fill="#000" transform="translate(320,320)" /></svg>';
 var blob = new Blob([svg], {type: "text/plain;charset=utf-8"});
 saveAs(blob, "snowflake.svg");
-}
-
-void keyPressed(){
-  recordShape = true;
 }
