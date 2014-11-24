@@ -1,8 +1,8 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <script src="processing.js
-"></script>
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+<script src="processing.js"></script>
 <script src="blob.js"></script>
 <script src="fileSaver.js"></script>
 <link href="//netdna.bootstrapcdn.com/bootstrap/3.0.2/css/bootstrap.min.css" rel="stylesheet">
@@ -15,7 +15,6 @@
 
   ga('create', 'UA-27382317-2', 'paulkaplan.me');
   ga('send', 'pageview');
-
 </script>
 
 <style>
@@ -88,12 +87,45 @@ html { overflow: hidden;     background-color:#F27E71;
 
 
 <script>
-document.getElementById('save').addEventListener('click', function(){
-  Processing.getInstanceById('c').record();
-    ga('send', 'event', 'button', 'click', 'save-button');
+var bound = false;
+var svg = null;
 
+function setSvg(data) {
+  svg = data;
+}
+
+var jsInterface = {
+  setSvg: setSvg
+}
+
+function bindJavascript() {
+  var pjs = Processing.getInstanceById('c');
+  if(pjs!=null) {
+    pjs.bindJavascript(jsInterface);
+    bound = true;
+    $(window).scrollTop(0)
+  } else {
+    setTimeout(bindJavascript, 250)
+  }
+}
+
+bindJavascript()
+
+setInterval(function() {
+  Processing.getInstanceById('c').record();
+}, 250);
+
+$("#save").click(function(){
+  if (svg) {
+    console.log("Found stored SVG");
+    var blob = new Blob([svg], {type: "image/svg+xml"});
+    saveAs(blob, "snowflake.svg");
+  }
+
+  ga('send', 'event', 'button', 'click', 'save-button');
 });
-document.getElementById('clear').addEventListener('click', function(){
+
+$("#clear").click(function(){
   Processing.getInstanceById('c').ClearShape();
 });
 </script>
